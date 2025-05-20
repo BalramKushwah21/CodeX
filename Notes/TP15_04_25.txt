@@ -1,0 +1,119 @@
+Linear Data Structure:
+1. Elements are arranged sequentially, one after another.
+2. Examples include arrays, linked lists, stacks, and queues.
+3. Traversal is straightforward as elements are in a single level.
+4. Memory utilization is less complex.
+
+Non-Linear Data Structure:
+1. Elements are arranged in a hierarchical or interconnected manner.
+2. Examples include trees, graphs, and heaps.
+3. Traversal can be complex due to multiple levels or connections.
+4. Memory utilization is more complex.
+
+Linked List:
+A linked list is a linear data Structure in which element (nodes) are stored in memory in a non-contiguous manner.
+Each node contains 
+
+Data:- The value stored in the enode
+POinter :- A reference to the next node in the sequence.
+
+Types of Linked List:
+1. Singly Linked List:
+    - Each node contains data and a pointer to the next node.
+    - Traversal is unidirectional.
+
+2. Doubly Linked List:
+    - Each node contains data, a pointer to the next node, and a pointer to the previous node.
+    - Traversal is bidirectional.
+
+3. Circular Linked List:
+    - The last node points back to the first node, forming a circle.
+    - Can be singly or doubly linked.
+    
+    
+    // Including the iostream library for input and output operations
+    #include <iostream>
+    using namespace std;
+
+    // Definition of a Node
+    struct Node {
+        int data;
+        Node* next;
+    };
+
+    // Function to create a new node
+    Node* createNode(int data) {
+        Node* newNode = new Node();
+        newNode->data = data;
+        newNode->next = nullptr;
+        return newNode;
+    }
+
+    // Function to insert a node at the end of the linked list
+    void insertAtEnd(Node*& head, int data) {
+        Node* newNode = createNode(data);
+        if (head == nullptr) {
+            head = newNode;
+            return;
+        }
+        Node* temp = head;
+        while (temp->next != nullptr) {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
+
+    // Function to display the linked list
+    void displayList(Node* head) {
+        Node* temp = head;
+        while (temp != nullptr) {
+            cout << temp->data << " -> ";
+            temp = temp->next;
+        }
+        cout << "NULL" << endl;
+    }
+
+    // Function to delete a node by value
+    void deleteNode(Node*& head, int value) {
+        if (head == nullptr) return;
+
+        if (head->data == value) {
+            Node* temp = head;
+            head = head->next;
+            delete temp;
+            return;
+        }
+
+        Node* temp = head;
+        while (temp->next != nullptr && temp->next->data != value) {
+            temp = temp->next;
+        }
+
+        if (temp->next == nullptr) return;
+
+        Node* nodeToDelete = temp->next;
+
+
+1.  Structure of a Node in a Linked List (C-like pseudocode):
+
+    struct Node {
+        int data;          // The value stored in the node
+        struct Node* next; // Pointer to the next node in the sequence
+    };
+
+2.  For a Doubly Linked List:
+
+    struct Node {
+        int data;          // The value stored in the node
+        struct Node* next; // Pointer to the next node in the sequence
+        struct Node* prev; // Pointer to the previous node in the sequence
+    };
+    
+3.  For a Circular Linked List:
+
+    struct Node {
+        int data;          // The value stored in the node
+        struct Node* next; // Pointer to the next node in the sequence
+    };
+
+    // In a circular linked list, the 'next' pointer of the last node points back to the first node.
